@@ -52,7 +52,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 50px;
   max-height: 150px;
   
 }
@@ -150,9 +150,9 @@ body {
 }
 
 .texto{
-text-shadow: 2px 2px 3px  black, -2px -2px 2px white;
 text-align: center;
 font-family: sans-serif;
+font: bold 11px arial, sans-serif;
 }
 .copyright{
 border: 2px;
@@ -257,4 +257,7 @@ transition: transform 0.3s ease; /* Suaviza la transición */
 display: block; /* Asegura que el carrito sea visible */
 }
 
+.copyright{
+  float: bottom;
+}
 

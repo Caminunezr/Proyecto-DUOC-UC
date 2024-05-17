@@ -28,3 +28,19 @@
     width: 100%;          /* Hace que la imagen ocupe todo el botón */
     height: auto;         /* Mantiene la proporción de la imagen */
   }
+
+  .reservacion{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 40%);;
+    color: white;
+    display: block;
+    margin-left: 25px;
+  }
+
+  .reservacion :hover{
+    background-color: hsl(0, 0%, 0%);
+    color: black;
+    font: bold arial;
+  }
