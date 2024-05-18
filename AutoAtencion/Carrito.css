@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #17a24f;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .detalles-carrito div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.detalles-carrito img {
+    width: 50px; /* O ajusta según la necesidad */
+    height: auto;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+    border-radius: 5px; /* Opcional: para bordes redondeados */
+}
+
+.detalles-carrito button {
+    margin-left: 10px; /* Espacio entre botones y texto */
+    padding: 5px 10px;
+}
+
+/* Ajustes adicionales para botones si es necesario */
+.detalles-carrito button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+  .Total button{
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .Total{
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #cbcbcb;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #payment-form input{
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #024508; /* Un tono más oscuro para el hover */
+    transform: translateY(-2px); /* Efecto de elevación ligera */
+}
+
+button:active {
+    transform: translateY(1px); /* Efecto de presión al hacer clic */
+}
+
+.container, .Total {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.detalles-carrito div {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateX(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+
+.total-precio {
+  background-color: #ffffff;  /* Fondo blanco */
+  padding: 20px;
+  margin: 20px auto;  /* Centrar la caja */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  max-width: 500px; /* Ancho máximo para la caja */
+  font-family: 'Roboto', sans-serif; /* Fuente de Google Fonts */
+}
+
+.total-precio h1, .total-precio p {
+  color: #333; /* Color oscuro para el texto para mejorar la legibilidad */
+  margin-bottom: 10px; /* Espacio debajo de los títulos y párrafos */
+}
+
+.total-precio label {
+  display: block; /* Hace que cada método de pago esté en su propia línea */
+  margin: 5px 0; /* Espaciado entre opciones */
+  font-size: 14px; /* Tamaño apropiado de la fuente para legibilidad */
+}
+
+.total-precio input[type="radio"] {
+  margin-right: 10px; /* Espacio entre el radio button y el texto */
+}
+
+#btn-pagar {
+  background-color: #4CAF50; /* Color verde atractivo */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Tamaño de fuente más grande para el botón */
+  display: block; /* Asegurar que el botón se expanda */
+  width: 100%; /* Hace que el botón se expanda al ancho total de su contenedor */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  margin-top: 20px; /* Espacio arriba del botón */
+}
+
+#btn-pagar:hover {
+  background-color: #367c39; /* Un tono más oscuro de verde para el hover */
+}
+
+.total-precio .metodos-pago {
+  border-top: 1px solid #ccc; /* Línea divisoria sutil */
+  padding-top: 15px; /* Espacio después de la línea */
+}
