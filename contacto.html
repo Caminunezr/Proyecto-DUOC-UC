@@ -167,26 +167,9 @@
 <!-- Additional JS END -->
 
 <!-- Google Maps -->
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTG_DfRINuiR8-N_gJ5HKnjobyY0ED9Y&callback=console.debug&libraries=maps,marker&v=beta"></script>
-<!-- Google Maps END -->
-
-<!-- LocalStorage Script -->
-<script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-
-        localStorage.setItem('contactName', name);
-        localStorage.setItem('contactEmail', email);
-        localStorage.setItem('contactMessage', message);
-
-        alert('Información almacenada en el LocalStorage');
-        this.submit(); // Continuar con el envío del formulario después de almacenar los datos
-    });
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTG_DfRINuiR8-N_gJ5HKnjobyY0ED9Y&callback=console.debug&libraries=maps,marker&v=beta">
 </script>
-<!-- LocalStorage Script END -->
+<!-- Google Maps END -->
 
 </body>
 </html>
