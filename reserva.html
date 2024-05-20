@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>VRDE - Reservation</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"/>
+    <style>
+        body {
+            font-family: 'Old Standard TT', serif;
+        }
+        .btn-custom {
+            background-color: #4CAF50;
+            color: #fff;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px;
+        }
+        .btn-custom:hover {
+            opacity: 0.8;
+        }
+        .form-container {
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            background-color: rgba(24, 93, 14, 0.779);
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .hero-heading,
+        .hero-sub-heading {
+            color: #038917 !important;
+        }
+        .hero-sub-heading {
+            color: #038917 !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+<header>
+    <div class="bloc bgc-7376 d-bloc" id="bloc-0">
+        <div class="container bloc-no-padding">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar row navbar-expand-md navbar-dark" role="navigation">
+                        <a class="navbar-brand ltc-6728 logo-style" href="index.html">VRDE</a>
+                        <button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-49968" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse navbar-49968">
+                            <ul class="site-navigation nav navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a href="menu.html" class="nav-link a-btn ltc-6728">Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="nosotros.html" class="nav-link ltc-6728">Nosotros</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contacto.html" class="nav-link ltc-6728">Contacto</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="bloc b-parallax d-bloc" id="hero" style="background-image: url('images/img_bg_1.jpg');">
+        <div class="container fill-bloc-top-edge">
+            <div class="row">
+                <div class="col-lg-6 col-md-10 offset-md-1 offset-lg-3 align-self-start text-center">
+                    <h1 class="text-center mg-clear hero-heading cap-heading tc-6728 mb-4">VRDE</h1>
+                    <div class="divider-h primary-divider mx-auto"></div>
+                    <p class="text-center hero-sub-heading">Disfruta de nuestra selección exclusiva de café, directamente de granjas sostenibles. Relájate en un entorno tranquilo mientras disfrutas de bebidas preparadas por expertos baristas.</p>
+                    <div class="text-center">
+                        <a href="menu.html" class="btn hero-btn primary-btn btn-c-3409">Ir a Menu<br></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bloc bgc-6728 l-bloc" id="reservation">
+        <div class="container bloc-md">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 form-container">
+                    <h2 class="text-center cap-heading tc-7376 mb-4">RESERVA TU MESA</h2>
+                    <div class="divider-h mx-auto primary-divider mb-4"></div>
+                    <form id="reservation-form">
+                        <div class="form-group">
+                            <label for="name">Tu Nombre</label>
+                            <input type="text" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="activities">Personas</label>
+                            <select id="activities" class="form-control">
+                                <option value="">N° de Personas</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5+">5+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Fecha</label>
+                            <input type="text" id="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Hora</label>
+                            <input type="text" id="time" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-custom" value="Reserva Ahora">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bloc bgc-7376 d-bloc" id="footer">
+    <div class="container bloc-lg-lg bloc-md bloc-lg-md">
+        <div class="row">
+            <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3 text-lg-left">
+                <a href="index.html" class="a-btn a-block footer-link ltc-6728">Home</a>
+            </div>
+            <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="nosotros.html" class="a-btn a-block footer-link ltc-6728">Nuestro Team<br></a>
+            </div>
+            <div class="col-md-3 text-lg-left offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="menu.html" class="a-btn a-block footer-link ltc-6728">Menú</a>
+            </div>
+            <div class="col-md-3 text-lg-center offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="contacto.html" class="a-btn a-block footer-link ltc-6728">Contacto</a>
+            </div>
+            <div class="align-self-end text-center col-sm-12 text-lg-center">
+                <div class="divider-h mx-auto footer-divider"></div>
+            </div>
+            <div class="col-md-12 col-sm-12 text-lg-center col-lg-12">
+                <p class="mx-auto d-block text-center">© Copyright 2024 | VDRE Cafeteria | All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Additional JS -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.bundle.min.js"></script>
+<script src="./js/blocs.min.js"></script>
+<script src="./js/jqBootstrapValidation.js"></script>
+<script src="./js/lazysizes.min.js" defer></script>
+<script src="./js/universal-parallax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#date').datetimepicker({
+            timepicker: false,
+            format: 'Y-m-d'
+        });
+        $('#time').datetimepicker({
+            datepicker: false,
+            format: 'H:i'
+        });
+
+        $('#reservation-form').submit(function(event) {
+            event.preventDefault();
+            let name = $('#name').val();
+            let activities = $('#activities').val();
+            let date = $('#date').val();
+            let time = $('#time').val();
+
+            if(name && activities && date && time) {
+                localStorage.setItem('reservation', JSON.stringify({name, activities, date, time}));
+                alert('Reserva guardada!');
+            } else {
+                alert('Por favor complete todos los campos.');
+            }
+        });
+    });
+</script>
+</body>
+</html>
