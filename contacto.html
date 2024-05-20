@@ -80,7 +80,7 @@
         <div class="container bloc-md bloc-lg-md">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-                    <form id="form_1" data-form-type="blocs-form" novalidate="" data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
+                    <form id="contact-form" data-form-type="blocs-form" novalidate="" data-success-msg="Your message has been sent." data-fail-msg="Sorry it seems that our mail server is not responding, Sorry for the inconvenience!">
                         <div class="form-group">
                             <label class="tc-7376">Nombre</label>
                             <input id="name" class="form-control" required="">
@@ -167,9 +167,26 @@
 <!-- Additional JS END -->
 
 <!-- Google Maps -->
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTG_DfRINuiR8-N_gJ5HKnjobyY0ED9Y&callback=console.debug&libraries=maps,marker&v=beta">
-</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeTG_DfRINuiR8-N_gJ5HKnjobyY0ED9Y&callback=console.debug&libraries=maps,marker&v=beta"></script>
 <!-- Google Maps END -->
+
+<!-- LocalStorage Script -->
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        localStorage.setItem('contactName', name);
+        localStorage.setItem('contactEmail', email);
+        localStorage.setItem('contactMessage', message);
+
+        alert('Información almacenada en el LocalStorage');
+        this.submit(); // Continuar con el envío del formulario después de almacenar los datos
+    });
+</script>
+<!-- LocalStorage Script END -->
 
 </body>
 </html>
