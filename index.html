@@ -16,6 +16,52 @@
 
     <!-- Analytics -->
     <!-- Analytics END -->
+    <style>
+        .custom-btn {
+            border: 1px solid rgb(18, 123, 0);
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 0 5px;
+            font-size: 0.875rem;
+        }
+    
+        .btn-login {
+            background-color: rgb(18, 123, 0);
+            color: black;
+        }
+    
+        .btn-register {
+            background-color: black;
+            color: rgb(60, 201, 0);
+        }
+    .custom-btn {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin: 0 5px;
+        font-size: 0.875rem;
+    }
+
+    .btn-login {
+        background-color: rgb(42, 81, 0);
+        color: black;
+    }
+
+    .btn-register {
+        background-color: rgb(42, 81, 0);
+        color: white;
+    }
+
+    .btn-logout {
+        background-color: red;
+        color: white;
+    }
+
+    #user-greeting {
+        font-family: 'Old Standard TT', serif;
+        font-size: 1rem;
+    }
+    </style>
 </head>
 <body>
 
@@ -56,10 +102,13 @@
                             <li class="nav-item">
                                 <a href="contacto.html" class="nav-link  ltc-6728">Contacto</a>
                             </li>
-                            
-                            </li>
-                        </li>
                         </ul>
+                        <div class="ml-auto d-flex align-items-center">
+                            <div id="user-greeting" class="d-none text-white mr-3">Hola, <span id="user-name"></span>!</div>
+                            <a href="login.html" class="btn custom-btn btn-login d-none" id="login-btn">Inicia Sesión</a>
+                            <a href="register.html" class="btn custom-btn btn-register d-none" id="register-btn">Únete Ahora</a>
+                            <button id="logout-btn" class="btn custom-btn btn-logout d-none">Salir</button>
+                        </div>
                     </div>
                     <div class="text-lg-center offset-lg-0 col-lg-12">
                         <img src="img/lazyload-ph.png" data-src="img/DALL·E%202024-04-12%2020.00.37%20-%20Create%20an%20image%20of%20a%20green%20circular%20logo,%20featuring%20an%20artistic%20white%20line%20drawing%20of%20a%20tree%20inside%20a%20stylized%20globe.%20Include%20leaves%20and%20water%20droplet.webp" class="img-fluid mx-auto d-block brand-image lazyload" alt="coffee logo" width="200" height="200">
@@ -86,6 +135,7 @@
         </div>
     </div>
 </div>
+
 <!-- hero END -->
 
 <!-- Weather Information -->
@@ -443,4 +493,24 @@
 <!-- Weather API END -->
 
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const loggedIn = localStorage.getItem('loggedIn');
+
+        if (loggedIn === 'true' && user) {
+            document.getElementById('user-name').textContent = user.firstName;
+            document.getElementById('user-greeting').classList.remove('d-none');
+            document.getElementById('logout-btn').classList.remove('d-none');
+        } else {
+            document.getElementById('login-btn').classList.remove('d-none');
+            document.getElementById('register-btn').classList.remove('d-none');
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'login.html';
+        });
+    });
+</script>
 </html>
