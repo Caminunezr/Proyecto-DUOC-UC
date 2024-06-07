@@ -46,6 +46,74 @@
         .hero-sub-heading {
             color: #038917 !important;
         }
+        /* Estilos para el menú de navegación */
+        .navbar {
+            background-color: #242424; /* Fondo oscuro */
+        }
+
+        .navbar .navbar-brand {
+            color: #fff; /* Color del texto del logo */
+            font-family: 'Old Standard TT', serif;
+            font-size: 1.5rem;
+        }
+
+        .navbar .nav-link {
+            color: #fff; /* Color del texto de los enlaces */
+            margin-right: 15px;
+            font-family: 'Old Standard TT', serif;
+            font-size: 1rem;
+        }
+
+        .navbar .nav-link:hover {
+            color: #ccc; /* Color del texto de los enlaces al pasar el cursor */
+        }
+
+        .custom-btn {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 0 5px;
+            font-size: 0.875rem;
+        }
+
+        .btn-login {
+            background-color: rgb(18, 123, 0);
+            color: black;
+        }
+
+        .btn-login:hover {
+            background-color: darkgreen;
+            color: white;
+        }
+
+        .btn-register {
+            background-color: rgba(18, 123, 0);
+            color: white;
+        }
+
+        .btn-register:hover {
+            background-color: darkgreen;
+            color: white;
+        }
+
+        .btn-logout {
+            background-color: red;
+            color: white;
+        }
+
+        #user-greeting {
+            font-family: 'Old Standard TT', serif;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .navbar-toggler {
+            border-color: transparent;
+        }
+
+        .navbar-toggler .svg-menu-icon {
+            fill: white;
+        }
     </style>
 </head>
 <body>
@@ -59,21 +127,31 @@
                 <div class="col">
                     <nav class="navbar row navbar-expand-md navbar-dark" role="navigation">
                         <a class="navbar-brand ltc-6728 logo-style" href="index.html">VRDE</a>
-                        <button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-49968" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                        <button id="nav-toggle" type="button" class="ml-auto navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon">
+                                <svg height="32" viewBox="0 0 32 32" width="32">
+                                    <path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path>
+                                </svg>
+                            </span>
                         </button>
-                        <div class="collapse navbar-collapse navbar-49968">
-                            <ul class="site-navigation nav navbar-nav ml-auto">
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                    <a href="menu.html" class="nav-link a-btn ltc-6728">Menu</a>
+                                    <a href="menu.html" class="nav-link">Menu</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="nosotros.html" class="nav-link ltc-6728">Nosotros</a>
+                                    <a href="nosotros.html" class="nav-link">Nosotros</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="contacto.html" class="nav-link ltc-6728">Contacto</a>
+                                    <a href="contacto.html" class="nav-link">Contacto</a>
                                 </li>
                             </ul>
+                            <div class="ml-auto d-flex align-items-center">
+                                <div id="user-greeting" class="d-none text-white mr-3">Hola, <span id="user-name"></span>!</div>
+                                <a href="login.html" class="btn custom-btn btn-login d-none" id="login-btn">Inicia Sesión</a>
+                                <a href="register.html" class="btn custom-btn btn-register d-none" id="register-btn">Únete Ahora</a>
+                                <button id="logout-btn" class="btn custom-btn btn-logout d-none">Salir</button>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -228,6 +306,24 @@
                 alert('Reserva guardada!');
                 form.reset();
             }
+        });
+
+        // Inicializar el estado del menú de navegación después de cargarlo
+        const user = JSON.parse(localStorage.getItem('user'));
+        const loggedIn = localStorage.getItem('loggedIn');
+
+        if (loggedIn === 'true' && user) {
+            document.getElementById('user-name').textContent = user.firstName;
+            document.getElementById('user-greeting').classList.remove('d-none');
+            document.getElementById('logout-btn').classList.remove('d-none');
+        } else {
+            document.getElementById('login-btn').classList.remove('d-none');
+            document.getElementById('register-btn').classList.remove('d-none');
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            localStorage.removeItem('loggedIn');
+            window.location.href = 'login.html';
         });
     });
 </script>
