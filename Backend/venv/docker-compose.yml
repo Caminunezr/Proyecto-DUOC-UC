@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: cafesystem_mysql
+    environment:
+      MYSQL_USER: usr_cafe
+      MYSQL_PASSWORD: cafe123$.
+      MYSQL_ROOT_PASSWORD: laCLAVEes123$.
+      MYSQL_DATABASE: db_cafe
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  backend:
+    build: .
+    command: python manage.py runserver
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+
