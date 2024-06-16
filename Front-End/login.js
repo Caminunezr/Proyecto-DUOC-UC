@@ -11,7 +11,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         alert('Login successful');
         window.location.href = 'index.html'; // Redirigir a la página de inicio
     } else {
-        alert('Invalid email or password');
+        alert('Mail invalido o contraseña incorrecta');
     }
 });
 

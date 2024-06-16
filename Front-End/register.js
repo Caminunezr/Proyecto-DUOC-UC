@@ -1,10 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
     const daySelect = document.getElementById('day');
-    for (let i = 1; i <= 31; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        daySelect.appendChild(option);
+    const monthSelect = document.getElementById('month');
+
+    function populateDays(month) {
+        daySelect.innerHTML = '<option value="" disabled selected>Día</option>'; // Clear previous options
+        const daysInMonth = new Date(2024, month, 0).getDate();
+        for (let i = 1; i <= daysInMonth; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            daySelect.appendChild(option);
+        }
+    }
+
+    monthSelect.addEventListener('change', function() {
+        const selectedMonth = parseInt(monthSelect.value);
+        if (!isNaN(selectedMonth)) {
+            populateDays(selectedMonth);
+        }
+    });
+
+    // Initialize days for the default selected month if any
+    if (monthSelect.value) {
+        populateDays(parseInt(monthSelect.value));
     }
 });
 
@@ -19,7 +37,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
 
     // Validaciones de ejemplo
     if (password.length < 6) {
-        alert('Password must be at least 6 characters long');
+        alert('La contraseña debe tener al menos 6 caracteres');
         return;
     }
 
@@ -34,7 +52,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     };
     localStorage.setItem('user', JSON.stringify(user));
 
-    alert('Registration successful');
+    alert('Registro exitoso');
     // Redirigir a la página de inicio de sesión
     window.location.href = 'login.html';
 });
