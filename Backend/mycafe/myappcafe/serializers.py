@@ -13,11 +13,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MesaSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Mesa
         fields = '__all__'
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = CustomUser
         fields = '__all__'
