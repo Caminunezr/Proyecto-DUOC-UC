@@ -4,7 +4,7 @@ from decimal import Decimal
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Opciones para las unidades de medida
+# Opciones para las unidades de medidas respaldo
 UNIDAD_MEDIDA_OPCIONES = (
     ('G', 'gramos'),
     ('Kg', 'kilogramos'),
