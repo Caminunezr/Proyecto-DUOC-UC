@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva,CustomUser
-from .serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer, MesaSerializer, ReservaSerializer
+from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, CustomUser, Boleta
+from .serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer, MesaSerializer, ReservaSerializer, BoletaSerializer
 from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
@@ -10,9 +10,6 @@ from rest_framework.views import APIView
 from rest_framework import status
 
 class ProductoViewSet(viewsets.ModelViewSet):
-    """
-    Un viewset para ver, editar y eliminar productos.
-    """
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
 
@@ -20,16 +17,10 @@ class ProductoViewSet(viewsets.ModelViewSet):
         serializer.save()
 
 class IngredienteViewSet(viewsets.ModelViewSet):
-    """
-    Un viewset para ver, editar y eliminar ingredientes.
-    """
     queryset = Ingrediente.objects.all()
     serializer_class = IngredienteSerializer
 
 class RecetaViewSet(viewsets.ModelViewSet):
-    """
-    Un viewset para ver, editar y eliminar recetas.
-    """
     queryset = Receta.objects.all()
     serializer_class = RecetaSerializer
 
@@ -38,9 +29,6 @@ class VentaViewSet(viewsets.ModelViewSet):
     serializer_class = VentaSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    Un viewset para ver, editar y eliminar usuarios.
-    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -51,6 +39,10 @@ class MesaViewSet(viewsets.ModelViewSet):
 class ReservaViewSet(viewsets.ModelViewSet):
     queryset = Reserva.objects.all()
     serializer_class = ReservaSerializer
+
+class BoletaViewSet(viewsets.ModelViewSet):
+    queryset = Boleta.objects.all()
+    serializer_class = BoletaSerializer
 
 class UserRegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()

@@ -1,13 +1,10 @@
 from rest_framework import serializers
-from .models import Producto, Ingrediente, Receta, Venta,Mesa, Reserva, UserProfile,CustomUser
-from django.contrib.auth.models import User
-
+from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, UserProfile, CustomUser, Boleta
 
 class IngredienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingrediente
         fields = ['id', 'nombre', 'cantidad_en_stock', 'unidad_medida']
-        
 
 class RecetaSerializer(serializers.ModelSerializer):
     ingrediente_detalle = IngredienteSerializer(source='ingrediente', read_only=True)
@@ -15,7 +12,7 @@ class RecetaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receta
         fields = ['id', 'producto', 'ingrediente', 'ingrediente_detalle', 'cantidad_necesaria']
-        
+
 class ProductoSerializer(serializers.ModelSerializer):
     recetas = RecetaSerializer(many=True, read_only=True)
 
@@ -52,13 +49,11 @@ class VentaSerializer(serializers.ModelSerializer):
         producto.vender_producto(cantidad)  # Descuenta el stock de los ingredientes
         venta = Venta.objects.create(**validated_data)
         return venta
-    
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ['id', 'user', 'birth_date']
-
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -76,6 +71,7 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
 class MesaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mesa
@@ -91,16 +87,16 @@ class ReservaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         """Custom validation for overlapping reservations."""
         mesa = data['mesa']
-        hora_inicio = data['hora_inicio']
-        hora_fin = data['hora_fin']
+        fecha_hora_inicio = data['fecha_hora_inicio']
+        fecha_hora_fin = data['fecha_hora_fin']
         
-        if hora_inicio >= hora_fin:
+        if fecha_hora_inicio >= fecha_hora_fin:
             raise serializers.ValidationError("La hora de inicio debe ser anterior a la hora de fin.")
         
         overlapping_reservations = Reserva.objects.filter(
             mesa=mesa,
-            hora_fin__gt=hora_inicio,
-            hora_inicio__lt=hora_fin,
+            fecha_hora_fin__gt=fecha_hora_inicio,
+            fecha_hora_inicio__lt=fecha_hora_fin,
         )
         if self.instance:
             overlapping_reservations = overlapping_reservations.exclude(pk=self.instance.pk)
@@ -109,3 +105,8 @@ class ReservaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Ya existe una reserva para esta mesa en el periodo seleccionado.")
 
         return data
+
+class BoletaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Boleta
+        fields = ['id', 'usuario', 'venta', 'nombre_usuario', 'fecha_hora', 'metodo_pago']

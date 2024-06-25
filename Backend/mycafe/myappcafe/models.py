@@ -1,17 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from decimal import Decimal
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.auth.models import Group, Permission
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
-# Opciones para las unidades de medidas respaldo
+# Opciones para las unidades de medida
 UNIDAD_MEDIDA_OPCIONES = (
     ('G', 'gramos'),
-    ('Kg', 'kilogramos'),
-    ('L', 'litros'),
-    ('Ml', 'mililitros'),
+    ('MG', 'miligramos'),
 )
 
 class CustomUser(AbstractUser):
@@ -21,14 +16,12 @@ class CustomUser(AbstractUser):
     groups = models.ManyToManyField(Group, related_name='custom_user_set')
     user_permissions = models.ManyToManyField(Permission, related_name='custom_user_permissions_set')
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     birth_date = models.DateField()
 
     def __str__(self):
         return self.user.email
-
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -59,15 +52,21 @@ class Producto(models.Model):
         self.cantidad_en_stock -= cantidad
         self.save()
 
+class Ingrediente(models.Model):
+    nombre = models.CharField(max_length=100)
+    cantidad_en_stock = models.DecimalField(max_digits=8, decimal_places=2)
+    unidad_medida = models.CharField(max_length=2, choices=UNIDAD_MEDIDA_OPCIONES, default='G')
+
+    def __str__(self):
+        return self.nombre
 
 class Receta(models.Model):
     producto = models.ForeignKey(Producto, related_name='recetas', on_delete=models.CASCADE)
-    ingrediente = models.ForeignKey('Ingrediente', related_name='ingrediente_recetas', on_delete=models.CASCADE)
+    ingrediente = models.ForeignKey(Ingrediente, related_name='ingrediente_recetas', on_delete=models.CASCADE)
     cantidad_necesaria = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
         return f"{self.cantidad_necesaria} de {self.ingrediente.nombre} para {self.producto.nombre}"
-
 
 class Venta(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -79,24 +78,15 @@ class Venta(models.Model):
         return f"{self.cantidad}x {self.producto.nombre} vendido/s el {self.fecha_hora}"
 
     @property
-    def precio_venta(self):
+    def total_venta(self):
         return self.producto.precio * Decimal(self.cantidad)
 
-
 class Mesa(models.Model):
-    CAPACIDAD_CHOICES = [
-        (1, '1 persona'),
-        (2, '2 personas'),
-        (3, '3 personas'),
-        (4, '4 personas'),
-        (5, '5 o más personas'),
-    ]
     numero = models.IntegerField(unique=True)
-    capacidad = models.IntegerField(choices=CAPACIDAD_CHOICES)
+    capacidad = models.IntegerField(choices=[(1, '1 persona'), (2, '2 personas'), (3, '3 personas'), (4, '4 personas'), (5, '5 o más personas')])
 
     def __str__(self):
         return f"Mesa {self.numero} - {self.get_capacidad_display()}"
-
 
 class Reserva(models.Model):
     mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
@@ -121,9 +111,9 @@ class Reserva(models.Model):
         if overlapping_reservations.exists():
             raise ValidationError("Ya existe una reserva para esta mesa en el periodo seleccionado.")
 
-class Ingrediente(models.Model):
-    nombre = models.CharField(max_length=100)
-    cantidad_en_stock = models.DecimalField(max_digits=8, decimal_places=2)
-
-    def __str__(self):
-        return self.nombre
+class Boleta(models.Model):
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
+    nombre_usuario = models.CharField(max_length=100)
+    fecha_hora = models.DateTimeField(default=timezone.now)
+    metodo_pago = models.CharField(max_length=50)
