@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Producto, Ingrediente, Receta, Venta
+from .models import Producto, Ingrediente, Receta, Venta,Mesa, Reserva, UserProfile,CustomUser
 from django.contrib.auth.models import User
 
 
@@ -53,7 +53,59 @@ class VentaSerializer(serializers.ModelSerializer):
         venta = Venta.objects.create(**validated_data)
         return venta
     
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['id', 'user', 'birth_date']
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_staff']
+        model = CustomUser
+        fields = ['username', 'email', 'first_name', 'last_name', 'birth_date', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            birth_date=validated_data['birth_date'],
+            password=validated_data['password']
+        )
+        return user
+class MesaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mesa
+        fields = ['numero', 'capacidad']
+
+class ReservaSerializer(serializers.ModelSerializer):
+    mesa_detalle = MesaSerializer(source='mesa', read_only=True)
+
+    class Meta:
+        model = Reserva
+        fields = ['id', 'mesa', 'mesa_detalle', 'usuario', 'nombre_cliente', 'fecha_hora_inicio', 'fecha_hora_fin']
+
+    def validate(self, data):
+        """Custom validation for overlapping reservations."""
+        mesa = data['mesa']
+        hora_inicio = data['hora_inicio']
+        hora_fin = data['hora_fin']
+        
+        if hora_inicio >= hora_fin:
+            raise serializers.ValidationError("La hora de inicio debe ser anterior a la hora de fin.")
+        
+        overlapping_reservations = Reserva.objects.filter(
+            mesa=mesa,
+            hora_fin__gt=hora_inicio,
+            hora_inicio__lt=hora_fin,
+        )
+        if self.instance:
+            overlapping_reservations = overlapping_reservations.exclude(pk=self.instance.pk)
+
+        if overlapping_reservations.exists():
+            raise serializers.ValidationError("Ya existe una reserva para esta mesa en el periodo seleccionado.")
+
+        return data

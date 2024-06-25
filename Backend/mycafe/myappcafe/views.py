@@ -1,7 +1,13 @@
 from rest_framework import viewsets
-from .models import Producto, Ingrediente, Receta, Venta
-from .serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer
+from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva,CustomUser
+from .serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer, MesaSerializer, ReservaSerializer
 from django.contrib.auth.models import User
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
 class ProductoViewSet(viewsets.ModelViewSet):
     """
@@ -37,3 +43,35 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class MesaViewSet(viewsets.ModelViewSet):
+    queryset = Mesa.objects.all()
+    serializer_class = MesaSerializer
+
+class ReservaViewSet(viewsets.ModelViewSet):
+    queryset = Reserva.objects.all()
+    serializer_class = ReservaSerializer
+
+class UserRegisterView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+class UserLoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        try:
+            user = CustomUser.objects.get(username=username)
+            if user.check_password(password):
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    'refresh': str(refresh),
+                    'access': str(refresh.access_token),
+                })
+            else:
+                return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        except CustomUser.DoesNotExist:
+            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
