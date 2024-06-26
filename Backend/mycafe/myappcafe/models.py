@@ -1,12 +1,19 @@
 from django.db import models
 from django.utils import timezone
-from decimal import Decimal
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.core.exceptions import ValidationError
 
 # Opciones para las unidades de medida
 UNIDAD_MEDIDA_OPCIONES = (
     ('G', 'gramos'),
     ('MG', 'miligramos'),
+)
+
+# Opciones para los métodos de pago
+METODO_PAGO_OPCIONES = (
+    ('EFECTIVO', 'Efectivo'),
+    ('TARJETA_DEBITO', 'Tarjeta Débito'),
+    ('TARJETA_CREDITO', 'Tarjeta Crédito'),
 )
 
 class CustomUser(AbstractUser):
@@ -25,10 +32,12 @@ class UserProfile(models.Model):
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(blank=True, null=True)  # Añadir descripción
     precio = models.DecimalField(max_digits=8, decimal_places=2)
     disponible = models.BooleanField(default=True)
     requiere_receta = models.BooleanField(default=False)
     cantidad_en_stock = models.IntegerField(default=0)
+    categoria = models.CharField(max_length=100, default='General')
 
     def __str__(self):
         return self.nombre
@@ -47,10 +56,15 @@ class Producto(models.Model):
 
         if self.requiere_receta:
             for receta in self.recetas.all():
-                if receta.ingrediente.cantidad_en_stock < receta.cantidad_necesaria * Decimal(cantidad):
+                if receta.ingrediente.cantidad_en_stock < receta.cantidad_necesaria * cantidad:
                     raise ValueError(f"Stock insuficiente para el ingrediente: {receta.ingrediente.nombre}")
-        self.cantidad_en_stock -= cantidad
-        self.save()
+                receta.ingrediente.cantidad_en_stock -= receta.cantidad_necesaria * cantidad
+                receta.ingrediente.save()
+        else:
+            if self.cantidad_en_stock < cantidad:
+                raise ValueError("Stock insuficiente para este producto.")
+            self.cantidad_en_stock -= cantidad
+            self.save()
 
 class Ingrediente(models.Model):
     nombre = models.CharField(max_length=100)
@@ -79,7 +93,7 @@ class Venta(models.Model):
 
     @property
     def total_venta(self):
-        return self.producto.precio * Decimal(self.cantidad)
+        return self.producto.precio * self.cantidad
 
 class Mesa(models.Model):
     numero = models.IntegerField(unique=True)
@@ -116,4 +130,17 @@ class Boleta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE)
     nombre_usuario = models.CharField(max_length=100)
     fecha_hora = models.DateTimeField(default=timezone.now)
-    metodo_pago = models.CharField(max_length=50)
+    metodo_pago = models.CharField(max_length=15, choices=METODO_PAGO_OPCIONES)
+    reserva = models.ForeignKey(Reserva, on_delete=models.SET_NULL, null=True, blank=True, related_name='boletas')
+
+    def __str__(self):
+        reserva_info = f" con reserva en {self.reserva.mesa}" if self.reserva else " sin reserva"
+        return f"Boleta de {self.nombre_usuario} el {self.fecha_hora}{reserva_info}"
+
+class Menu(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField(blank=True, null=True)
+    productos = models.ManyToManyField(Producto, related_name='menus')
+
+    def __str__(self):
+        return self.nombre
