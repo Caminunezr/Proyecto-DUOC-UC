@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.core.exceptions import ValidationError
 
-# Opciones para las unidades de medida
+# Opciones para las unidades de medidas respaldo
 UNIDAD_MEDIDA_OPCIONES = (
     ('G', 'gramos'),
     ('MG', 'miligramos'),
