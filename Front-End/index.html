@@ -34,33 +34,15 @@
             background-color: black;
             color: rgb(60, 201, 0);
         }
-    .custom-btn {
-        border: 1px solid black;
-        border-radius: 20px;
-        padding: 5px 15px;
-        margin: 0 5px;
-        font-size: 0.875rem;
-    }
+        .btn-logout {
+            background-color: red;
+            color: white;
+        }
 
-    .btn-login {
-        background-color: rgb(42, 81, 0);
-        color: black;
-    }
-
-    .btn-register {
-        background-color: rgb(42, 81, 0);
-        color: white;
-    }
-
-    .btn-logout {
-        background-color: red;
-        color: white;
-    }
-
-    #user-greeting {
-        font-family: 'Old Standard TT', serif;
-        font-size: 1rem;
-    }
+        #user-greeting {
+            font-family: 'Old Standard TT', serif;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -242,7 +224,9 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <a href="#" data-lightbox="img/coffee-machine.jpg" data-gallery-id="gallery-1" data-frame="frameless-lb" class="lazyload"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/coffee-machine.webp"><img src="img/lazyload-ph.png" data-src="img/coffee-machine.jpg" class="img-fluid mx-auto d-block mb-3 lazyload" alt="coffee machine" width="360" height="239"></picture></a>
+                <a href="#" data-lightbox="img/coffee-machine.jpg" data-gallery-id="gallery-1
+
+" data-frame="frameless-lb" class="lazyload"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/coffee-machine.webp"><img src="img/lazyload-ph.png" data-src="img/coffee-machine.jpg" class="img-fluid mx-auto d-block mb-3 lazyload" alt="coffee machine" width="360" height="239"></picture></a>
                 <h3 class="text-center tc-7376 mg-sm">
                     Máquinas de Café
                 </h3>
@@ -351,7 +335,9 @@
             </div>
         </div>
         <div class="row voffset">
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md
+
+-6 col-sm-6">
                 <a href="#" data-lightbox="img/coffee-and-coffee-beans.jpg" data-gallery-id="gallery-1" data-frame="frameless-lb"><picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/coffee-and-coffee-beans.webp"><img src="img/lazyload-ph.png" data-src="img/coffee-and-coffee-beans.jpg" class="img-fluid mx-auto d-block mb-3 lazyload" alt="coffee and-coffee-beans" width="263" height="175"></picture></a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -439,7 +425,9 @@
                 <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3 text-lg-left">
                     <a href="index.html" class="a-btn a-block footer-link ltc-6728">Home</a>
                 </div>
-                <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <div class="col-md-3 offset-md-
+
+0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
                     <a href="nosotros.html" class="a-btn a-block footer-link ltc-6728">Nuestro Team<br></a>
                 </div>
                 <div class="col-md-3 text-lg-left offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
@@ -470,7 +458,9 @@
 <script src="./js/bootstrap.bundle.min.js?9725"></script>
 <script src="./js/blocs.min.js?5055"></script>
 <script src="./js/lazysizes.min.js" defer></script>
-<script src="./js/universal-parallax.min.js?8079"></script><!-- Additional JS END -->
+<script src="./js/universal-parallax.min.js?8079"></script>
+<script src="js/index.js"></script>
+<!-- Additional JS END -->
 
 <!-- Weather API -->
 <script>
@@ -493,24 +483,5 @@
 <!-- Weather API END -->
 
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const loggedIn = localStorage.getItem('loggedIn');
-
-        if (loggedIn === 'true' && user) {
-            document.getElementById('user-name').textContent = user.firstName;
-            document.getElementById('user-greeting').classList.remove('d-none');
-            document.getElementById('logout-btn').classList.remove('d-none');
-        } else {
-            document.getElementById('login-btn').classList.remove('d-none');
-            document.getElementById('register-btn').classList.remove('d-none');
-        }
-
-        document.getElementById('logout-btn').addEventListener('click', function() {
-            localStorage.removeItem('loggedIn');
-            window.location.href = 'login.html';
-        });
-    });
-</script>
+</body>
 </html>

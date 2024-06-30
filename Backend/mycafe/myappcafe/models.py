@@ -144,3 +144,22 @@ class Menu(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class ContactMessage(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if self.user:
+            return f"Mensaje de {self.user.username} el {self.created_at}"
+        else:
+            return f"Mensaje de {self.name} el {self.created_at}"
+
+    def save(self, *args, **kwargs):
+        if self.user:
+            self.name = self.user.get_full_name()
+            self.email = self.user.email
+        super().save(*args, **kwargs)

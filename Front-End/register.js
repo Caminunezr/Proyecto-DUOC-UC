@@ -41,20 +41,43 @@ document.getElementById('registerForm').addEventListener('submit', function(even
         return;
     }
 
-    // Guardar datos en localStorage
-    const user = {
-        firstName,
-        lastName,
-        email,
-        password,
-        day,
-        month
-    };
-    localStorage.setItem('user', JSON.stringify(user));
+    const birthDate = `2024-${month.padStart(2, '0')}-${day.padStart(2, '0')}`; // Formatear la fecha de nacimiento
 
-    alert('Registro exitoso');
-    // Redirigir a la página de inicio de sesión
-    window.location.href = 'login.html';
+    // Crear datos del usuario
+    const user = {
+        username: email, // Usar el correo electrónico como nombre de usuario
+        email,
+        first_name: firstName,
+        last_name: lastName,
+        birth_date: birthDate,
+        password
+    };
+
+    // Enviar solicitud POST al backend
+    fetch('http://127.0.0.1:8000/api/register/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Registro fallido');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Registro exitoso');
+        // Redirigir a la página de inicio de sesión
+        window.location.href = 'login.html';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al registrar el usuario');
+    });
 });
 
 document.getElementById('togglePassword').addEventListener('click', function() {

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, UserProfile, CustomUser, Boleta
+from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, UserProfile, CustomUser, Boleta, ContactMessage
 
 class IngredienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -110,3 +110,8 @@ class BoletaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Boleta
         fields = ['id', 'usuario', 'venta', 'nombre_usuario', 'fecha_hora', 'metodo_pago']
+
+class ContactMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactMessage
+        fields = ['id', 'user', 'name', 'email', 'message']
