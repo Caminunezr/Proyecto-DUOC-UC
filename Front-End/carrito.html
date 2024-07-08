@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: 'Old Standard TT', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cart-header h1 {
+            font-size: 2rem;
+            color: #006400;
+        }
+
+        .cart-header img {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-item-title {
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .cart-item-quantity button {
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .cart-item-quantity span {
+            margin: 0 10px;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            font-size: 1.25rem;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-summary p {
+            font-size: 1.25rem;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-summary .btn-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Espacio entre los botones */
+        }
+
+        .cart-summary button,
+        .back-to-menu-btn {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.25rem;
+            margin-top: 20px;
+            width: 49%; /* Ancho igual para ambos botones */
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .cart-summary button:hover,
+        .back-to-menu-btn:hover {
+            background-color: #008000;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-item img {
+                margin-bottom: 10px;
+            }
+
+            .cart-summary button,
+            .back-to-menu-btn {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="cart-header">
+            <h1>Carrito de Compras</h1>
+            <a href="index.html">
+                <img src="img/DALL·E 2024-04-12 20.00.37 - Create an image of a green circular logo, featuring an artistic white line drawing of a tree inside a stylized globe. Include leaves and water droplet.webp" alt="VRDE Logo">
+            </a>
+        </div>
+        <div id="cart-items" class="cart-items mb-4"></div>
+        <div class="cart-summary">
+            <h3>Resumen</h3>
+            <p>Total: <span id="total-price">CLP 0</span></p>
+            <div class="btn-container">
+                <button id="checkout-btn">Proceder al Pago</button>
+                <a href="menu.html" class="back-to-menu-btn">Volver al Menú</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/carrito.js"></script>
+</body>
+</html>

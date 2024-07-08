@@ -14,6 +14,66 @@
     <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <title>Menu</title>
     <style>
+
+#cart-icon-container {
+    position: fixed;
+    top: 80px; /* Ajusta la distancia desde la parte superior */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart-icon {
+    width: 40px;
+    height: auto;
+}
+
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #cart-icon-container {
+        top: 60px; /* Ajusta la distancia para pantallas más pequeñas */
+        right: 10px;
+    }
+
+    #cart-icon {
+        width: 30px;
+    }
+
+    #cart-count {
+        padding: 3px 6px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #cart-icon-container {
+        top: 50px; /* Ajusta la distancia para pantallas aún más pequeñas */
+        right: 10px;
+    }
+
+    #cart-icon {
+        width: 25px;
+    }
+
+    #cart-count {
+        padding: 2px 5px;
+        font-size: 8px;
+    }
+}
+
         .custom-btn {
             border: 1px solid black;
             border-radius: 20px;
@@ -42,17 +102,82 @@
             font-size: 1rem;
         }
 
-        /* Centrar los botones de "Reserva tu café" */
         .text-md-left.text-center {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-    </style>    
-<!-- Analytics -->
- 
-<!-- Analytics END -->
-    
+
+        .product-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .add-to-cart-btn {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #008000;
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                max-width: 100%;
+            }
+        }
+        #cold-beverages .product-description {
+    color: #f2f1f1; /* Cambia esto por el color que prefieras */
+}
+    </style>
 </head>
 <body>
 
@@ -138,174 +263,108 @@
                 </h2>
                 <div class="divider-h mx-auto primary-divider">
                 </div>
-                <button class="btn hero-btn primary-btn btn-c-3409" onclick="window.location.href='AutoAtencion/B_Caliente.html'">Reserva tu café</button>
                 <hr>
             </div>
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="blocs-grid-container menu-grid">
-                    <div class="text-lg-center text-md-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+            <div class="col-12">
+                <div class="menu-grid">
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="CAPPUCCINO">
+                        <div class="product-details">
+                            <h4 class="product-title">Cappuccino</h4>
+                            <p class="product-description">Café espresso, leche vaporizada y espuma de leche.</p>
+                            <p class="product-price">$3200</p>
+                            <button class="add-to-cart-btn" data-name="CAPPUCCINO" data-price="3200" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            CAPPUCCINO
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso, leche vaporizada y espuma de leche.
-                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="CAFFE LATTÉ">
+                        <div class="product-details">
+                            <h4 class="product-title">Caffe Latté</h4>
+                            <p class="product-description">Café espresso y una mayor cantidad de leche vaporizada con un poco de espuma de leche.</p>
+                            <p class="product-price">$2800</p>
+                            <button class="add-to-cart-btn" data-name="CAFFE LATTÉ" data-price="2800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3200<br>
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="MOCHA">
+                        <div class="product-details">
+                            <h4 class="product-title">Mocca</h4>
+                            <p class="product-description">Café espresso, chocolate, leche vaporizada y espuma de leche.</p>
+                            <p class="product-price">$3250</p>
+                            <button class="add-to-cart-btn" data-name="MOCHA" data-price="3250" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-md-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="ESPRESSO">
+                        <div class="product-details">
+                            <h4 class="product-title">Espresso</h4>
+                            <p class="product-description">Café concentrado y fuerte, preparado rápidamente con agua caliente a alta presión.</p>
+                            <p class="product-price">$2400</p>
+                            <button class="add-to-cart-btn" data-name="ESPRESSO" data-price="2400" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            CAFFE LATTÉ
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso y una mayor cantidad de leche vaporizada con un poco de espuma de leche.
-                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="DOUBLE">
+                        <div class="product-details">
+                            <h4 class="product-title">Double</h4>
+                            <p class="product-description">Doble cantidad de café espresso.</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="DOUBLE" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2800<br>
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Americano">
+                        <div class="product-details">
+                            <h4 class="product-title">Americano</h4>
+                            <p class="product-description">Café espresso diluido con agua caliente.</p>
+                            <p class="product-price">$1800</p>
+                            <button class="add-to-cart-btn" data-name="Americano" data-price="1800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-md-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Flat White">
+                        <div class="product-details">
+                            <h4 class="product-title">Flat White</h4>
+                            <p class="product-description">Café espresso con una capa delgada de leche vaporizada.</p>
+                            <p class="product-price">$3300</p>
+                            <button class="add-to-cart-btn" data-name="Flat White" data-price="3300" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            MOCHA
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso, chocolate, leche vaporizada y espuma de leche.
-                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Latte Macchiato">
+                        <div class="product-details">
+                            <h4 class="product-title">Latte Macchiato</h4>
+                            <p class="product-description">Leche vaporizada con un toque de café espresso.</p>
+                            <p class="product-price">$3400</p>
+                            <button class="add-to-cart-btn" data-name="Latte Macchiato" data-price="3400" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3250<br>
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Lungo">
+                        <div class="product-details">
+                            <h4 class="product-title">Lungo</h4>
+                            <p class="product-description">Café espresso extraído durante más tiempo, resultando en una bebida más grande y menos concentrada.</p>
+                            <p class="product-price">$2900</p>
+                            <button class="add-to-cart-btn" data-name="Lungo" data-price="2900" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            ESPRESSO
-                        </h4>
-                        <p class="menu-item-info">
-                            Café concentrado y fuerte, preparado rápidamente con agua caliente a alta presión.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2400<br>
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            DOUBLE
-                        </h4>
-                        <p class="menu-item-info">
-                            Doble cantidad de café espresso.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $4000<br>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="blocs-grid-container menu-grid">
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Americano
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso diluido con agua caliente.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $1800<br>
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Flat White
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso con una capa delgada de leche vaporizada.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3300<br>
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Latte Macchiato
-                        </h4>
-                        <p class="menu-item-info">
-                            Leche vaporizada con un toque de café espresso.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3400<br>
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Lungo
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso extraído durante más tiempo, resultando en una bebida más grande y menos concentrada.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2900<br>
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Ristretto
-                        </h4>
-                        <p class="menu-item-info">
-                            Café espresso más concentrado y fuerte, con menos cantidad de agua.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2050
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Ristretto">
+                        <div class="product-details">
+                            <h4 class="product-title">Ristretto</h4>
+                            <p class="product-description">Café espresso más concentrado y fuerte, con menos cantidad de agua.</p>
+                            <p class="product-price">$2050</p>
+                            <button class="add-to-cart-btn" data-name="Ristretto" data-price="2050" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -327,167 +386,107 @@
                 </h2>
                 <div class="divider-h mx-auto primary-divider">
                 </div>
-                <button class="btn hero-btn primary-btn btn-c-3409" onclick="window.location.href='AutoAtencion/B_Caliente.html'">Reserva tu bebida</button>
             </div>
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="blocs-grid-container menu-grid">
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+            <div class="col-12">
+                <div class="menu-grid">
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Frappuccino">
+                        <div class="product-details">
+                            <h4 class="product-title">Frappuccino</h4>
+                            <p class="product-description">Una bebida helada y cremosa a base de café hecha con café instantáneo, leche, hielo y generalmente jarabe de vainilla y crema batida.</p>
+                            <p class="product-price">$2800</p>
+                            <button class="add-to-cart-btn" data-name="Frappuccino" data-price="2800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Frappuccino
-                        </h4>
-                        <p class="menu-item-info">
-                            Una bebida helada y cremosa a base de café hecha con café instantáneo, leche, hielo y generalmente jarabe de vainilla y crema batida.                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Milk Shake">
+                        <div class="product-details">
+                            <h4 class="product-title">Milk Shake</h4>
+                            <p class="product-description">Helado de vainilla, leche y café recién preparado, mezclado hasta obtener una textura suave.</p>
+                            <p class="product-price">$3600</p>
+                            <button class="add-to-cart-btn" data-name="Milk Shake" data-price="3600" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2800<br><br>
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Latte">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Latte</h4>
+                            <p class="product-description">Un clásico refrescante hecho con espresso helado, leche fría y, a menudo, un toque de jarabe simple.</p>
+                            <p class="product-price">$3000</p>
+                            <button class="add-to-cart-btn" data-name="Iced Latte" data-price="3000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Mocha">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Mocha</h4>
+                            <p class="product-description">Similar a un Iced Latte, pero con la adición de chocolate o jarabe de chocolate para un sabor más dulce y decadente.</p>
+                            <p class="product-price">$3100</p>
+                            <button class="add-to-cart-btn" data-name="Iced Mocha" data-price="3100" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Milk Shake
-                        </h4>
-                        <p class="menu-item-info">
-                            Helado de vainilla, leche y café recién preparado, mezclado hasta obtener una textura suave.
-                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Irish Coffee">
+                        <div class="product-details">
+                            <h4 class="product-title">Irish Coffee</h4>
+                            <p class="product-description">Café caliente con un toque de whisky irlandés, azúcar y crema batida (versión fría también disponible).</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="Irish Coffee" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3600
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Cold Brew Coffee">
+                        <div class="product-details">
+                            <h4 class="product-title">Cold Brew Coffee</h4>
+                            <p class="product-description">Preparado con café molido empapado en agua fría durante un período prolongado, lo que produce una bebida suave y con menos acidez.</p>
+                            <p class="product-price">$3200</p>
+                            <button class="add-to-cart-btn" data-name="Cold Brew Coffee" data-price="3200" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Nitro Cold Brew">
+                        <div class="product-details">
+                            <h4 class="product-title">Nitro Cold Brew</h4>
+                            <p class="product-description">Similar al Cold Brew Coffee, pero infundido con nitrógeno para una textura cremosa y similar a la cerveza.</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="Nitro Cold Brew" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Iced Latte
-                        </h4>
-                        <p class="menu-item-info">
-                            Un clásico refrescante hecho con espresso helado, leche fría y, a menudo, un toque de jarabe simple.
-                        </p>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Americano">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Americano</h4>
+                            <p class="product-description">Espresso helado diluido con agua fría, perfecto para aquellos que disfrutan del sabor puro del café sin la leche.</p>
+                            <p class="product-price">$2000</p>
+                            <button class="add-to-cart-btn" data-name="Iced Americano" data-price="2000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3000
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Micchiato">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Micchiato</h4>
+                            <p class="product-description">Similar a un Iced Latte, pero con una capa de espuma de leche en la parte superior para un contraste de texturas.</p>
+                            <p class="product-price">$3100</p>
+                            <button class="add-to-cart-btn" data-name="Iced Micchiato" data-price="3100" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Iced Mocha
-                        </h4>
-                        <p class="menu-item-info">
-                            Similar a un Iced Latte, pero con la adición de chocolate o jarabe de chocolate para un sabor más dulce y decadente.
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3100
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Irish Coffee
-                        </h4>
-                        <p class="menu-item-info">
-                            Café caliente con un toque de whisky irlandés, azúcar y crema batida (versión fría también disponible).
-                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $4000
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="blocs-grid-container menu-grid">
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Cold Brew Coffee
-                        </h4>
-                        <p class="menu-item-info">
-                            Preparado con café molido empapado en agua fría durante un período prolongado, lo que produce una bebida suave y con menos acidez.                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3200
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Nitro Cold Brew
-                        </h4>
-                        <p class="menu-item-info">
-                            Similar al Cold Brew Coffee, pero infundido con nitrógeno para una textura cremosa y similar a la cerveza.                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $4000
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Iced Americano
-                        </h4>
-                        <p class="menu-item-info">
-                            Espresso helado diluido con agua fría, perfecto para aquellos que disfrutan del sabor puro del café sin la leche.                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $2000
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Iced Micchiato
-                        </h4>
-                        <p class="menu-item-info">
-                            Similar a un Iced Latte, pero con una capa de espuma de leche en la parte superior para un contraste de texturas.                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3100
-                        </h4>
-                    </div>
-                    <div class="text-lg-center text-center">
-                        <picture><source type="image/webp" srcset="img/lazyload-ph.png" data-srcset="img/drink-thumb.webp"><img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="img-fluid float-lg-none drink-thumb float-none lazyload" alt="drink thumb" width="50" height="50"></picture>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 cap-heading menu-item-title">
-                            Freddo Espresso
-                        </h4>
-                        <p class="menu-item-info">
-                            Espresso helado vertido sobre una bola de helado, creando un postre refrescante y cafeinado.                        </p>
-                    </div>
-                    <div>
-                        <h4 class="tc-7376 menu-price">
-                            $3700
-                        </h4>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Freddo Espresso">
+                        <div class="product-details">
+                            <h4 class="product-title">Freddo Espresso</h4>
+                            <p class="product-description">Espresso helado vertido sobre una bola de helado, creando un postre refrescante y cafeinado.</p>
+                            <p class="product-price">$3700</p>
+                            <button class="add-to-cart-btn" data-name="Freddo Espresso" data-price="3700" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -538,15 +537,21 @@
 </div>
 <!-- Main container END -->
     
-
+<div id="cart-icon-container" style="position: fixed; top: 80px; right: 20px; z-index: 1000;" class="d-none">
+    <img src="img/cart-icon.png" alt="Carrito" id="cart-icon" style="width: 50px;">
+    <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 12px;">0</span>
+</div>
 
 <!-- Additional JS -->
 <script src="./js/jquery.min.js?5535"></script>
 <script src="./js/bootstrap.bundle.min.js?9725"></script>
 <script src="./js/blocs.min.js?5055"></script>
 <script src="./js/lazysizes.min.js" defer></script>
-<script src="./js/universal-parallax.min.js?9297"></script><!-- Additional JS END -->
+<script src="./js/universal-parallax.min.js?9297"></script>
 <script src="./js/menu.js"></script>
+<script src="./js/carrito.js"></script>
+
+<!-- Additional JS END --> 
 
 </body>
 </html>
