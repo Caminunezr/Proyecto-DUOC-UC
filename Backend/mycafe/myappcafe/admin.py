@@ -1,5 +1,3 @@
-# myappcafe/admin.py
-
 from django.contrib import admin
 from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, CustomUser, Boleta, ContactMessage
 

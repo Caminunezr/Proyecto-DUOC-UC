@@ -17,6 +17,12 @@ METODO_PAGO_OPCIONES = (
     ('TARJETA_CREDITO', 'Tarjeta Crédito'),
 )
 
+# Opciones para el tipo de producto
+TIPO_PRODUCTO_OPCIONES = (
+    ('CALIENTE', 'Bebida Caliente'),
+    ('FRIA', 'Bebida Fría'),
+)
+
 class CustomUser(AbstractUser):
     birth_date = models.DateField(null=True, blank=True)
     first_name = models.CharField(max_length=30)
@@ -39,6 +45,7 @@ class Producto(models.Model):
     requiere_receta = models.BooleanField(default=False)
     cantidad_en_stock = models.IntegerField(default=0)
     categoria = models.CharField(max_length=100, default='General')
+    tipo = models.CharField(max_length=10, choices=TIPO_PRODUCTO_OPCIONES, default='CALIENTE')
 
     def __str__(self):
         return self.nombre
@@ -105,7 +112,7 @@ class Mesa(models.Model):
 
 class Reserva(models.Model):
     mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True)
+    usuario = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     nombre_cliente = models.CharField(max_length=100, default="Unknown")
     fecha_hora_inicio = models.DateTimeField()
     fecha_hora_fin = models.DateTimeField()
@@ -132,7 +139,7 @@ class Boleta(models.Model):
     nombre_usuario = models.CharField(max_length=100)
     fecha_hora = models.DateTimeField(default=timezone.now)
     metodo_pago = models.CharField(max_length=15, choices=METODO_PAGO_OPCIONES)
-    reserva = models.ForeignKey(Reserva, on_delete=models.SET_NULL, null=True, blank=True, related_name='boletas')
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, null=True, blank=True, related_name='boletas')
 
     def __str__(self):
         reserva_info = f" con reserva en {self.reserva.mesa}" if self.reserva else " sin reserva"

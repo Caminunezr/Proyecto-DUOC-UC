@@ -18,13 +18,14 @@ class ProductoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Producto
-        fields = ['id', 'nombre', 'precio', 'disponible', 'requiere_receta', 'cantidad_en_stock', 'recetas']
+        fields = ['id', 'nombre', 'precio', 'disponible', 'requiere_receta', 'cantidad_en_stock', 'recetas', 'tipo']  # Añadir 'tipo'
 
     def update(self, instance, validated_data):
         instance.nombre = validated_data.get('nombre', instance.nombre)
         instance.precio = validated_data.get('precio', instance.precio)
         instance.requiere_receta = validated_data.get('requiere_receta', instance.requiere_receta)
         instance.cantidad_en_stock = validated_data.get('cantidad_en_stock', instance.cantidad_en_stock)
+        instance.tipo = validated_data.get('tipo', instance.tipo)  # Añadir actualización de 'tipo'
         instance.save()
         instance.actualizar_disponibilidad()
         return instance

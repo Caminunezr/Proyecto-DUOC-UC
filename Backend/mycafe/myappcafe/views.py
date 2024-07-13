@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, CustomUser, Boleta, ContactMessage
-from .serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer, MesaSerializer, ReservaSerializer, BoletaSerializer, ContactMessageSerializer
+from myappcafe.models import Producto, Ingrediente, Receta, Venta, Mesa, Reserva, CustomUser, Boleta, ContactMessage
+from myappcafe.serializers import ProductoSerializer, IngredienteSerializer, RecetaSerializer, VentaSerializer, UserSerializer, MesaSerializer, ReservaSerializer, BoletaSerializer, ContactMessageSerializer
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -45,6 +45,13 @@ class UserLoginView(APIView):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Producto.objects.filter(disponible=True)
+        return Producto.objects.all()
 
 class IngredienteViewSet(viewsets.ModelViewSet):
     queryset = Ingrediente.objects.all()
