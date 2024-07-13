@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .register-container {
+            display: flex;
+            height: 100vh;
+        }
+        .register-info {
+            background-color: #f8f9fa;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .register-form {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .form-control:focus {
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            margin-top: 10px;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-info">
+            <h2>Crear una cuenta</h2>
+        </div>
+        <div class="register-form">
+            <form id="registerForm" class="w-75">
+                <h3>INFORMACIÓN PERSONAL</h3>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Apellido:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                </div>
+                <h3>SEGURIDAD DE CUENTA</h3>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3>CUMPLEAÑOS</h3>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="day" class="form-label">Selecciona el día:</label>
+                        <select class="form-control" id="day" name="day" required>
+                            <option value="" disabled selected>Día</option>
+                            <!-- Opciones de día -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="month" class="form-label">Selecciona el mes:</label>
+                        <select class="form-control" id="month" name="month" required>
+                            <option value="" disabled selected>Mes</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Crear cuenta</button>
+                <a href="login.html" class="btn btn-secondary w-100">Ir al login</a>
+            </form>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+    <script src="register.js"></script>
+</body>
+</html>

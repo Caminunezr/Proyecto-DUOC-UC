@@ -1,0 +1,557 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="canonical" href="https://www.vrde.cl/menu.html">
+    <meta name="robots" content="index, follow">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="boton.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css?3156">
+    <link rel="stylesheet" type="text/css" href="style.css?3810">
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <title>Menu</title>
+    <style>
+
+#cart-icon-container {
+    position: fixed;
+    top: 80px; /* Ajusta la distancia desde la parte superior */
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cart-icon {
+    width: 40px;
+    height: auto;
+}
+
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 12px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #cart-icon-container {
+        top: 60px; /* Ajusta la distancia para pantallas más pequeñas */
+        right: 10px;
+    }
+
+    #cart-icon {
+        width: 30px;
+    }
+
+    #cart-count {
+        padding: 3px 6px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #cart-icon-container {
+        top: 50px; /* Ajusta la distancia para pantallas aún más pequeñas */
+        right: 10px;
+    }
+
+    #cart-icon {
+        width: 25px;
+    }
+
+    #cart-count {
+        padding: 2px 5px;
+        font-size: 8px;
+    }
+}
+
+        .custom-btn {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 0 5px;
+            font-size: 0.875rem;
+        }
+
+        .btn-login {
+            background-color: rgb(18, 123, 0);
+            color: black;
+        }
+
+        .btn-register {
+            background-color: rgba(18, 123, 0);
+            color: white;
+        }
+
+        .btn-logout {
+            background-color: red;
+            color: white;
+        }
+
+        #user-greeting {
+            font-family: 'Old Standard TT', serif;
+            font-size: 1rem;
+        }
+
+        .text-md-left.text-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .add-to-cart-btn {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #008000;
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                max-width: 100%;
+            }
+        }
+        #cold-beverages .product-description {
+    color: #f2f1f1; /* Cambia esto por el color que prefieras */
+}
+    </style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="page-loading-blocs-notifaction" class="page-preloader"></div>
+<!-- Preloader END -->
+
+
+<!-- Main container -->
+<div class="page-container">
+    
+<header>
+
+<!-- bloc-0 -->
+<div class="bloc bgc-7376 d-bloc " id="bloc-0">
+    <div class="container bloc-no-padding">
+        <div class="row">
+            <div class="col">
+                <nav class="navbar row navbar-expand-md navbar-dark" role="navigation">
+                    <a class="navbar-brand ltc-6728 logo-style" href="index.html">VRDE</a>
+                    <button id="nav-toggle" type="button" class="ml-auto ui-navbar-toggler navbar-toggler border-0 p-0" data-toggle="collapse" data-target=".navbar-49968" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"><svg height="32" viewBox="0 0 32 32" width="32"><path class="svg-menu-icon" d="m2 9h28m-28 7h28m-28 7h28"></path></svg></span>
+                    </button>
+                    <div class="collapse navbar-collapse navbar-49968">
+                        <ul class="site-navigation nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a href="menu.html" class="nav-link a-btn ltc-6728">Menu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="nosotros.html" class="nav-link  ltc-6728">Nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="contacto.html" class="nav-link  ltc-6728">Contacto</a>
+                            </li>
+                        </ul>
+                        <div class="ml-auto d-flex align-items-center">
+                            <div id="user-greeting" class="d-none text-white mr-3">Hola, <span id="user-name"></span>!</div>
+                            <a href="login.html" class="btn custom-btn btn-login d-none" id="login-btn">Inicia Sesión</a>
+                            <a href="register.html" class="btn custom-btn btn-register d-none" id="register-btn">Únete Ahora</a>
+                            <button id="logout-btn" class="btn custom-btn btn-logout d-none">Salir</button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bloc-0 END -->
+
+
+</header>
+<main>
+
+<!-- heading -->
+<div class="bloc b-parallax bloc-bg-texture texture-darken d-bloc" id="heading">
+    <div class="parallax bg-coffee-and-coffee-beans">
+    </div>
+    <div class="container bloc-xl-lg bloc-md bloc-md-sm bloc-lg-md">
+        <div class="row">
+            <div class="col text-md-left text-center">
+                <h1 class="text-center tc-6728 page-heading">
+                    Nuestro Menú
+                </h1>
+            </div>
+            <div class="text-lg-center offset-lg-0 col-lg-12">
+                <img src="img/lazyload-ph.png" data-src="img/DALL·E%202024-04-12%2020.00.37%20-%20Create%20an%20image%20of%20a%20green%20circular%20logo,%20featuring%20an%20artistic%20white%20line%20drawing%20of%20a%20tree%20inside%20a%20stylized%20globe.%20Include%20leaves%20and%20water%20droplet.webp" class="img-fluid mx-auto d-block brand-image lazyload" alt="coffee logo" width="200" height="200">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- heading END -->
+
+</main>
+<section>
+
+<!-- hot-beverages -->
+<div class="bloc l-bloc" id="hot-beverages">
+    <div class="container bloc-md bloc-lg-md">
+        <div class="row">
+            <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-md-left text-center">
+                <h2 class="mb-4 tc-7376 cap-heading text-center">
+                    BEBIDAS CALIENTES
+                </h2>
+                <div class="divider-h mx-auto primary-divider">
+                </div>
+                <hr>
+            </div>
+            <div class="col-12">
+                <div class="menu-grid">
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="CAPPUCCINO">
+                        <div class="product-details">
+                            <h4 class="product-title">Cappuccino</h4>
+                            <p class="product-description">Café espresso, leche vaporizada y espuma de leche.</p>
+                            <p class="product-price">$3200</p>
+                            <button class="add-to-cart-btn" data-name="CAPPUCCINO" data-price="3200" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="CAFFE LATTÉ">
+                        <div class="product-details">
+                            <h4 class="product-title">Caffe Latté</h4>
+                            <p class="product-description">Café espresso y una mayor cantidad de leche vaporizada con un poco de espuma de leche.</p>
+                            <p class="product-price">$2800</p>
+                            <button class="add-to-cart-btn" data-name="CAFFE LATTÉ" data-price="2800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="MOCHA">
+                        <div class="product-details">
+                            <h4 class="product-title">Mocca</h4>
+                            <p class="product-description">Café espresso, chocolate, leche vaporizada y espuma de leche.</p>
+                            <p class="product-price">$3250</p>
+                            <button class="add-to-cart-btn" data-name="MOCHA" data-price="3250" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="ESPRESSO">
+                        <div class="product-details">
+                            <h4 class="product-title">Espresso</h4>
+                            <p class="product-description">Café concentrado y fuerte, preparado rápidamente con agua caliente a alta presión.</p>
+                            <p class="product-price">$2400</p>
+                            <button class="add-to-cart-btn" data-name="ESPRESSO" data-price="2400" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="DOUBLE">
+                        <div class="product-details">
+                            <h4 class="product-title">Double</h4>
+                            <p class="product-description">Doble cantidad de café espresso.</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="DOUBLE" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Americano">
+                        <div class="product-details">
+                            <h4 class="product-title">Americano</h4>
+                            <p class="product-description">Café espresso diluido con agua caliente.</p>
+                            <p class="product-price">$1800</p>
+                            <button class="add-to-cart-btn" data-name="Americano" data-price="1800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Flat White">
+                        <div class="product-details">
+                            <h4 class="product-title">Flat White</h4>
+                            <p class="product-description">Café espresso con una capa delgada de leche vaporizada.</p>
+                            <p class="product-price">$3300</p>
+                            <button class="add-to-cart-btn" data-name="Flat White" data-price="3300" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Latte Macchiato">
+                        <div class="product-details">
+                            <h4 class="product-title">Latte Macchiato</h4>
+                            <p class="product-description">Leche vaporizada con un toque de café espresso.</p>
+                            <p class="product-price">$3400</p>
+                            <button class="add-to-cart-btn" data-name="Latte Macchiato" data-price="3400" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Lungo">
+                        <div class="product-details">
+                            <h4 class="product-title">Lungo</h4>
+                            <p class="product-description">Café espresso extraído durante más tiempo, resultando en una bebida más grande y menos concentrada.</p>
+                            <p class="product-price">$2900</p>
+                            <button class="add-to-cart-btn" data-name="Lungo" data-price="2900" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Ristretto">
+                        <div class="product-details">
+                            <h4 class="product-title">Ristretto</h4>
+                            <p class="product-description">Café espresso más concentrado y fuerte, con menos cantidad de agua.</p>
+                            <p class="product-price">$2050</p>
+                            <button class="add-to-cart-btn" data-name="Ristretto" data-price="2050" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hot-beverages END -->
+
+</section>
+<section>
+
+<!-- cold-beverages -->
+<div class="bloc bgc-2941 d-bloc" id="cold-beverages">
+    <div class="container bloc-md bloc-lg-md">
+        <div class="row">
+            <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-md-left text-center">
+                <h2 class="mb-4 tc-7376 cap-heading text-center">
+                    Bebidas Frias<br>
+                </h2>
+                <div class="divider-h mx-auto primary-divider">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="menu-grid">
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Frappuccino">
+                        <div class="product-details">
+                            <h4 class="product-title">Frappuccino</h4>
+                            <p class="product-description">Una bebida helada y cremosa a base de café hecha con café instantáneo, leche, hielo y generalmente jarabe de vainilla y crema batida.</p>
+                            <p class="product-price">$2800</p>
+                            <button class="add-to-cart-btn" data-name="Frappuccino" data-price="2800" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Milk Shake">
+                        <div class="product-details">
+                            <h4 class="product-title">Milk Shake</h4>
+                            <p class="product-description">Helado de vainilla, leche y café recién preparado, mezclado hasta obtener una textura suave.</p>
+                            <p class="product-price">$3600</p>
+                            <button class="add-to-cart-btn" data-name="Milk Shake" data-price="3600" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Latte">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Latte</h4>
+                            <p class="product-description">Un clásico refrescante hecho con espresso helado, leche fría y, a menudo, un toque de jarabe simple.</p>
+                            <p class="product-price">$3000</p>
+                            <button class="add-to-cart-btn" data-name="Iced Latte" data-price="3000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Mocha">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Mocha</h4>
+                            <p class="product-description">Similar a un Iced Latte, pero con la adición de chocolate o jarabe de chocolate para un sabor más dulce y decadente.</p>
+                            <p class="product-price">$3100</p>
+                            <button class="add-to-cart-btn" data-name="Iced Mocha" data-price="3100" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Irish Coffee">
+                        <div class="product-details">
+                            <h4 class="product-title">Irish Coffee</h4>
+                            <p class="product-description">Café caliente con un toque de whisky irlandés, azúcar y crema batida (versión fría también disponible).</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="Irish Coffee" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Cold Brew Coffee">
+                        <div class="product-details">
+                            <h4 class="product-title">Cold Brew Coffee</h4>
+                            <p class="product-description">Preparado con café molido empapado en agua fría durante un período prolongado, lo que produce una bebida suave y con menos acidez.</p>
+                            <p class="product-price">$3200</p>
+                            <button class="add-to-cart-btn" data-name="Cold Brew Coffee" data-price="3200" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Nitro Cold Brew">
+                        <div class="product-details">
+                            <h4 class="product-title">Nitro Cold Brew</h4>
+                            <p class="product-description">Similar al Cold Brew Coffee, pero infundido con nitrógeno para una textura cremosa y similar a la cerveza.</p>
+                            <p class="product-price">$4000</p>
+                            <button class="add-to-cart-btn" data-name="Nitro Cold Brew" data-price="4000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Americano">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Americano</h4>
+                            <p class="product-description">Espresso helado diluido con agua fría, perfecto para aquellos que disfrutan del sabor puro del café sin la leche.</p>
+                            <p class="product-price">$2000</p>
+                            <button class="add-to-cart-btn" data-name="Iced Americano" data-price="2000" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Iced Micchiato">
+                        <div class="product-details">
+                            <h4 class="product-title">Iced Micchiato</h4>
+                            <p class="product-description">Similar a un Iced Latte, pero con una capa de espuma de leche en la parte superior para un contraste de texturas.</p>
+                            <p class="product-price">$3100</p>
+                            <button class="add-to-cart-btn" data-name="Iced Micchiato" data-price="3100" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="img/lazyload-ph.png" data-src="img/drink-thumb.jpg" class="product-image lazyload" alt="Freddo Espresso">
+                        <div class="product-details">
+                            <h4 class="product-title">Freddo Espresso</h4>
+                            <p class="product-description">Espresso helado vertido sobre una bola de helado, creando un postre refrescante y cafeinado.</p>
+                            <p class="product-price">$3700</p>
+                            <button class="add-to-cart-btn" data-name="Freddo Espresso" data-price="3700" data-image="img/drink-thumb.jpg">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cold-beverages END -->
+
+</section>
+<!-- ScrollToTop Button -->
+<button aria-label="Scroll to top button" class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></button>
+<!-- ScrollToTop Button END-->
+
+
+<footer>
+
+<!-- footer -->
+<div class="bloc bgc-7376 d-bloc" id="footer">
+    <div class="container bloc-lg-lg bloc-md bloc-lg-md">
+        <div class="row">
+            <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3 text-lg-left">
+                <a href="index.html" class="a-btn a-block footer-link ltc-6728">Home</a>
+            </div>
+            <div class="col-md-3 offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="nosotros.html" class="a-btn a-block footer-link ltc-6728">Nuestro Team<br></a>
+            </div>
+            <div class="col-md-3 text-lg-left offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="menu.html" class="a-btn a-block footer-link ltc-6728">Menú</a>
+            </div>
+            <div class="col-md-3 text-lg-center offset-md-0 offset-lg-0 col-lg-3 offset-sm-0 col-sm-3">
+                <a href="contacto.html" class="a-btn a-block footer-link ltc-6728">Contacto</a>
+            </div>
+            <div class="align-self-end text-center col-sm-12 text-lg-center">
+                <div class="divider-h mx-auto footer-divider">
+                    </div>
+            </div>
+            <div class="col-md-12 col-sm-12 text-lg-center col-lg-12">
+                    <p class="mx-auto d-block text-center">
+                        © Copyright 2024 | VDRE Cafeteria | All Rights Reserved
+                    </p>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- footer END -->
+
+</footer>
+</div>
+<!-- Main container END -->
+    
+<div id="cart-icon-container" style="position: fixed; top: 80px; right: 20px; z-index: 1000;" class="d-none">
+    <img src="img/cart-icon.png" alt="Carrito" id="cart-icon" style="width: 50px;">
+    <span id="cart-count" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; padding: 5px 10px; font-size: 12px;">0</span>
+</div>
+
+<!-- Additional JS -->
+<script src="./js/jquery.min.js?5535"></script>
+<script src="./js/bootstrap.bundle.min.js?9725"></script>
+<script src="./js/blocs.min.js?5055"></script>
+<script src="./js/lazysizes.min.js" defer></script>
+<script src="./js/universal-parallax.min.js?9297"></script>
+<script src="./js/menu.js"></script>
+<script src="./js/carrito.js"></script>
+
+<!-- Additional JS END --> 
+
+</body>
+</html>
